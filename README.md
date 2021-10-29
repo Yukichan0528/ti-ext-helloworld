@@ -1,4 +1,4 @@
-# ti-helloworld
+# ti-ext-helloworld
 
 This repository is practice of tastyigniter extentions.
 
