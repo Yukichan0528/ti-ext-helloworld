@@ -8,7 +8,7 @@ return [
                 'create' => [
                     'label' => 'lang:admin::lang.button_new',
                     'class' => 'btn btn-primary',
-                    //    'href' => 'test/helloworld/{{lower_plural_name}}/create'
+                    // 'href' => 'test/helloworld/{{lower_plural_name}}/create'
                     'href' => 'test/helloworld/child1/create'
                 ],
                 'delete' => [

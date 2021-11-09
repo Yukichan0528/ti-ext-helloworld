@@ -52,11 +52,11 @@ class Extension extends BaseExtension
     public function registerComponents()
     {
         return [
-            // 'Test\HelloWorld\Components\Child1::class' => [
-            //     'code' => 'helloworldChild1',
-            //     'name' => 'helloworld-child1',
-            //     'description' => 'Description of the helloworld-child1 component',
-            // ],
+            'Test\HelloWorld\Components\Child1' => [
+                'code' => 'helloworldChild1',
+                'name' => 'helloworld-child1',
+                'description' => 'Description of the helloworld-child1 component',
+            ],
         ];
     }
 

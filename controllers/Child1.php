@@ -14,7 +14,6 @@ class Child1 extends \Admin\Classes\AdminController
         'Admin\Actions\ListController'
     ];
 
-    // TODO modelが必要？
     public $listConfig = [
         'list' => [
             'model'        => 'Test\Helloworld\Models\Child1',
@@ -25,7 +24,6 @@ class Child1 extends \Admin\Classes\AdminController
         ],
     ];
 
-    // TODO modelが必要？
     public $formConfig = [
         'name'       => 'Child1',
         'model'      => 'Test\Helloworld\Models\Child1',

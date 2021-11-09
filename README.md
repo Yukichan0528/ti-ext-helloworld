@@ -98,7 +98,7 @@ create
   create:apiresource   Creates a new API resource.
   create:command       Creates a new console command.
   create:component     Creates a new extension component.
-  create:controller    Creates a new controller. # view is also created.
+  create:controller    Creates a new controller.
   create:extension     Creates a new extension.
   create:model         Creates a new model.
 ...
@@ -117,7 +117,47 @@ Usage:
   ...
 ```
 
-### 4-4 create create:controller
+### 4-3 create:component
+
+```sh : sample
+$ php artisan create:component [Your original name].Helloworld Child1
+```
+
+->
+Theme から Extension で独自作成したデータを呼び出すための Component を作成する。
+
+- components/child1/default.blade.php
+
+  -> View 部分。
+
+  呼び出し方
+
+  ```
+  ---
+  ...
+
+  '[block]':
+    code: block
+
+  ...
+  ---
+  ```
+
+- components/Child1.php
+
+  -> View で利用する変数の定義。
+
+  Component 側からの値の受け取りもここで定義する。
+
+  ```php : sample
+  public function onRun()
+  {
+    $this->page['code'] = $code = $this->property('code');
+    $this->page['title'] = $this->property('title', $code);
+  }
+  ```
+
+### 4-4 create:controller
 
 ```sh : sample
 $ php artisan create:controller [Your original name].Helloworld Child1
@@ -128,7 +168,7 @@ $ php artisan create:controller [Your original name].Helloworld Child1
 - Child1 を表示するための controllers と views が作成される。
   - 動作には Model も必要。
 
-### 4-6 create create:model
+### 4-6 create:model
 
 ```sh : sample
 $ php artisan create:model [Your original name].Helloworld Child1
