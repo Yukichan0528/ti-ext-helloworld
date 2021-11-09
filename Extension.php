@@ -52,8 +52,11 @@ class Extension extends BaseExtension
     public function registerComponents()
     {
         return [
-            // Remove this line and uncomment the line below to activate
-            //            'Test\HelloWorld\Components\MyComponent' => 'myComponent',
+            // 'Test\HelloWorld\Components\Child1::class' => [
+            //     'code' => 'helloworldChild1',
+            //     'name' => 'helloworld-child1',
+            //     'description' => 'Description of the helloworld-child1 component',
+            // ],
         ];
     }
 
@@ -62,32 +65,34 @@ class Extension extends BaseExtension
     public function registerNavigation()
     {
         return [
+            // 新規メニュー
             'helloworld' => [ // Required : 【必須】
                 'priority' => 990, // optional : ナビゲーションメニューの表示順の優先順位。
                 'icon' => 'fa-plug', // optional : ナビゲーションメニューに表示するアイコン。
                 'title' => 'HelloWorld', // Required : 【必須】ナビゲーションメニューに表示するタイトル。
                 // 'class' => '', // optioonal : メニューのclass属性。
-                // 'href' => admin_url('helloworld'), // optional : メニュー押下時の遷移先。child が設定されている時は機能しない。
+                // 'href' => admin_url('test/helloworld'), // optional : メニュー押下時の遷移先。child が設定されている時は機能しない。url は autherから先を記載。
                 // 'permission' => ['Test.HelloWorld'], // optional : 表示に必要な Permissions。
                 'child' => [ // optional
-                    'test1' => [ // Required : 【必須】
+                    'child1' => [ // Required : 【必須】
                         'priority' => 10, // optional
                         // 'icon' => 'fa-plug', // optional
-                        'title' => 'Test', // Required : 【必須】
+                        'title' => 'Child1', // Required : 【必須】
                         'class' => 'helloworld', // optioonal
-                        'href' => admin_url('helloworld/test'), // Required : 【必須】
-                        // 'permission' => ['Test.HelloWorld.Test1'],
+                        'href' => admin_url('test/helloworld/child1'), // Required : 【必須】
+                        // 'permission' => ['Test.HelloWorld.Child1'],
                     ],
-                    // 'test2' => [ // optional : 最低1つ。
+                    // 'child2' => [ // optional : 最低1つ。
                     //     'priority' => 20, // optional
                     //     // 'icon' => 'fa-plug', // optional
-                    //     'title' => 'Test2', // Required : 【必須】
+                    //     'title' => 'Child2', // Required : 【必須】
                     //     'class' => 'helloworld', // optioonal
-                    //     'href' => admin_url('helloworld/test2'), // Required : 【必須】
-                    //     // 'permission' => ['Test.HelloWorld.Test2'], // optioonal
+                    //     'href' => admin_url('test/helloworld/child2'), // Required : 【必須】
+                    //     // 'permission' => ['Test.HelloWorld.Child2'], // optioonal
                     // ],
                 ],
             ],
+            // TODO 既存メニューにchildを追加する方法
         ];
     }
 

@@ -14,7 +14,7 @@ https://tastyigniter.com/docs/master/extend/extensions
 
 ## 1. Run create command and set metadata
 
-```bat
+```sh
 $ cd /var/www/html/...[application home]
 $ php artisan create:extension [Your original name].HelloWorld
 ```
@@ -53,32 +53,75 @@ cf. get icon from https://fontawesome.com/
 public function registerNavigation()
 {
     return [
+        // 新規メニュー
         'helloworld' => [ // Required : 【必須】
             'priority' => 990, // optional : ナビゲーションメニューの表示順の優先順位。
             'icon' => 'fa-plug', // optional : ナビゲーションメニューに表示するアイコン。
             'title' => 'HelloWorld', // Required : 【必須】ナビゲーションメニューに表示するタイトル。
             // 'class' => '', // optioonal : メニューのclass属性。
-            // 'href' => admin_url('helloworld'), // optional : メニュー押下時の遷移先。child が設定されている時は機能しない。
+            // 'href' => admin_url('test/helloworld'), // optional : メニュー押下時の遷移先。child が設定されている時は機能しない。url は autherから先を記載。
             // 'permission' => ['Test.HelloWorld'], // optional : 表示に必要な Permissions。
             'child' => [ // optional
-                'test1' => [ // Required : 【必須】
+                'child1' => [ // Required : 【必須】
                     'priority' => 10, // optional
                     // 'icon' => 'fa-plug', // optional
-                    'title' => 'Test', // Required : 【必須】
+                    'title' => 'Child1', // Required : 【必須】
                     'class' => 'helloworld', // optioonal
-                    'href' => admin_url('helloworld/test'), // Required : 【必須】
-                    // 'permission' => ['Test.HelloWorld.Test1'],
+                    'href' => admin_url('test/helloworld/child1'), // Required : 【必須】
+                    // 'permission' => ['Test.HelloWorld.Child1'],
                 ],
-                // 'test2' => [ // optional : 最低1つ。
+                // 'child2' => [ // optional : 最低1つ。
                 //     'priority' => 20, // optional
                 //     // 'icon' => 'fa-plug', // optional
-                //     'title' => 'Test2', // Required : 【必須】
+                //     'title' => 'Child2', // Required : 【必須】
                 //     'class' => 'helloworld', // optioonal
-                //     'href' => admin_url('helloworld/test2'), // Required : 【必須】
-                //     // 'permission' => ['Test.HelloWorld.Test2'], // optioonal
+                //     'href' => admin_url('test/helloworld/child2'), // Required : 【必須】
+                //     // 'permission' => ['Test.HelloWorld.Child2'], // optioonal
                 // ],
             ],
         ],
+        // 既存メニューにchildを追加する方法は検証中
     ];
 }
 ```
+
+## 4. Create contents
+
+Create your own contents.
+
+You can use `php artisan` commands.
+
+```sh : create commands list
+$ php artisan list
+...
+create
+  create:apiresource   Creates a new API resource.
+  create:command       Creates a new console command.
+  create:component     Creates a new extension component.
+  create:controller    Creates a new controller. # view is also created.
+  create:extension     Creates a new extension.
+  create:model         Creates a new model.
+...
+```
+
+```sh : create commands
+$ php artisan create:<any> -h
+...
+Usage:
+  php artisan create:apiresource [options] [--] <extension> <controller>
+  php artisan create:command [options] [--] <extension> <command-name>
+  php artisan create:component [options] [--] <extension> <component>
+  php artisan create:controller [options] [--] <extension> <controller>
+  php artisan create:extension [options] [--] <extension>
+  php artisan create:model [options] [--] <extension> <model>
+  ...
+```
+
+### 4-4 create create:controller
+
+```sh : sample
+$ php artisan create:controller [Your original name].Helloworld Child1
+```
+
+-> Child1 を表示するための controllers と views が作成される。
+-> ページの表示には Model も必要？
