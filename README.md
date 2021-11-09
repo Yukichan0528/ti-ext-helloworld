@@ -123,5 +123,28 @@ Usage:
 $ php artisan create:controller [Your original name].Helloworld Child1
 ```
 
--> Child1 を表示するための controllers と views が作成される。
--> ページの表示には Model も必要？
+->
+
+- Child1 を表示するための controllers と views が作成される。
+  - 動作には Model も必要。
+
+### 4-6 create create:model
+
+```sh : sample
+$ php artisan create:model [Your original name].Helloworld Child1
+```
+
+->
+
+- Child1 用の database(migrations) と models が作成される。
+  - 動作には Controller も必要。
+- migrations （DB テーブル作成）は Extension 読み込み時に行われるので、再読み込み必須。
+  - migrations の実行は ti_migrations テーブルに存在しない場合のみ。
+    - データ形式が変更の場合は、新規の migrations ファイルを作成する。
+    - ti_migrations テーブルの該当の項目を削除しても動作はする。
+- 初期データは「ID」のみ（created_at, updated_at は自動入力）。
+  - database/migrations 内のファイルから、追加の column を設定可能。
+- 初期データでは、閲覧のみ可能。
+  - new と delete は models/config/child1.php のコメントアウトを解除することで実装される。
+    - コメントアウト解除のコードでは、create の href の設定がエラーになるので、view で閲覧できる URL に変更する必要がある。
+  - edit は要検証

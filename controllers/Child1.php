@@ -53,7 +53,7 @@ class Child1 extends \Admin\Classes\AdminController
     public function __construct()
     {
         // for controller test.
-        dd('this is controller of child1.');
+        // dd('this is controller of child1.');
 
         parent::__construct();
 
