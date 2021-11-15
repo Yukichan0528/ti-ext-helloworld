@@ -33,4 +33,11 @@ class Child1 extends Model
         'morphOne' => [],
         'morphMany' => [],
     ];
+
+    protected $primaryKey = 'id';
+
+    public static function getAll()
+    {
+        return self::get();
+    }
 }

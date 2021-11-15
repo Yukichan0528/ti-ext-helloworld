@@ -126,11 +126,32 @@ $ php artisan create:component [Your original name].Helloworld Child1
 ->
 Theme から Extension で独自作成したデータを呼び出すための Component を作成する。
 
+- components/Child1.php
+
+  -> View で利用する変数の定義。
+
+  Model からのデータの受け取りもここで定義する。
+
+  ```php : sample
+  public function onRun() {
+      // dd($this);
+      $this->page['name'] = $this->name;
+      $this->page['hwChild1All'] = $this->loadHwChild1All();
+  }
+
+  protected function loadHwChild1All()
+  {
+      return Child1Model::getAll();
+  }
+  ```
+
 - components/child1/default.blade.php
 
-  -> View 部分。
+  -> View 部分を記述。
 
-  呼び出し方
+  `page['xxx']` で定義した値を `$xxx` で利用可能。
+
+  theme での呼び出し方
 
   ```
   ---
@@ -143,30 +164,15 @@ Theme から Extension で独自作成したデータを呼び出すための Co
   ---
   ```
 
-- components/Child1.php
-
-  -> View で利用する変数の定義。
-
-  Component 側からの値の受け取りもここで定義する。
-
-  ```php : sample
-  public function onRun()
-  {
-    $this->page['code'] = $code = $this->property('code');
-    $this->page['title'] = $this->property('title', $code);
-  }
-  ```
-
 ### 4-4 create:controller
 
 ```sh : sample
 $ php artisan create:controller [Your original name].Helloworld Child1
 ```
 
-->
+-> Child1 を表示するための controllers と管理画面用の views が作成される。
 
-- Child1 を表示するための controllers と views が作成される。
-  - 動作には Model も必要。
+- 動作には Model も必要。
 
 ### 4-6 create:model
 
@@ -174,10 +180,9 @@ $ php artisan create:controller [Your original name].Helloworld Child1
 $ php artisan create:model [Your original name].Helloworld Child1
 ```
 
-->
+-> Child1 用の database(migrations) と models が作成される。
 
-- Child1 用の database(migrations) と models が作成される。
-  - 動作には Controller も必要。
+- 動作には Controller も必要。
 - migrations （DB テーブル作成）は Extension 読み込み時に行われるので、再読み込み必須。
   - migrations の実行は ti_migrations テーブルに存在しない場合のみ。
     - データ形式が変更の場合は、新規の migrations ファイルを作成する。
