@@ -1,0 +1,12 @@
+{
+  "code": "Test.HelloWorld",
+  "name": "HelloWorld",
+  "description": "This extension is practice of tastyigniter extensions.",
+  "version": "1.0.0",
+  "author": "Test",
+  "icon": "fa-plug",
+  "homepage": "https://github.com/Yukichan0528/ti-ext-helloworld",
+  "require": {
+    "igniter.demo": "*"
+  }
+}
