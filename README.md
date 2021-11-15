@@ -6,7 +6,7 @@ https://github.com/tastyigniter/TastyIgniter
 
 # How to install this extension
 
-Copy this into your extension folder as /extensions/[Your original name]/helloworld.
+Copy this into your extension folder as /extensions/Test/helloworld.
 
 # How to create this extension
 
