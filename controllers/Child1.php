@@ -46,7 +46,7 @@ class Child1 extends \Admin\Classes\AdminController
         'configFile' => 'child1',
     ];
 
-    protected $requiredPermissions = 'Test.Helloworld';
+    protected $requiredPermissions = 'Test.HelloWorld'; // 表示に必要な Permissions。Extension.php の registerPermissions での定義名に合わせる。
 
     public function __construct()
     {

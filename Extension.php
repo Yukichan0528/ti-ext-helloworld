@@ -72,7 +72,7 @@ class Extension extends BaseExtension
                 'title' => 'HelloWorld', // Required : 【必須】ナビゲーションメニューに表示するタイトル。
                 // 'class' => '', // optioonal : メニューのclass属性。
                 // 'href' => admin_url('test/helloworld'), // optional : メニュー押下時の遷移先。child が設定されている時は機能しない。url は autherから先を記載。
-                // 'permission' => ['Test.HelloWorld'], // optional : 表示に必要な Permissions。
+                'permission' => ['Test.HelloWorld'], // optional : 表示に必要な Permissions。registerPermissions での定義名に合わせる。
                 'child' => [ // optional
                     'child1' => [ // Required : 【必須】
                         'priority' => 10, // optional
@@ -80,7 +80,7 @@ class Extension extends BaseExtension
                         'title' => 'Child1', // Required : 【必須】
                         'class' => 'helloworld', // optioonal
                         'href' => admin_url('test/helloworld/child1'), // Required : 【必須】
-                        // 'permission' => ['Test.HelloWorld.Child1'],
+                        'permission' => ['Test.HelloWorld'],
                     ],
                     // 'child2' => [ // optional : 最低1つ。
                     //     'priority' => 20, // optional
@@ -88,7 +88,7 @@ class Extension extends BaseExtension
                     //     'title' => 'Child2', // Required : 【必須】
                     //     'class' => 'helloworld', // optioonal
                     //     'href' => admin_url('test/helloworld/child2'), // Required : 【必須】
-                    //     // 'permission' => ['Test.HelloWorld.Child2'], // optioonal
+                    //     // 'permission' => ['Test.HelloWorld'], // optioonal
                     // ],
                 ],
             ],
@@ -109,6 +109,10 @@ class Extension extends BaseExtension
             //                'description' => 'Some permission',
             //                'group' => 'module',
             //            ],
+            'Test.HelloWorld' => [
+                'label' => 'test.helloworld::default.permissions',
+                'group' => 'admin::lang.permissions.name',
+            ],
         ];
     }
 }
